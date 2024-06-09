@@ -18,11 +18,11 @@ on:
       TARGET_REPOSITORY:
         description: '空间名称'
         required: true
-        default: 'aopkcn'
+        default: '1panel-zuoguai'
       ARCH:
         description: '系统架构'
         required: true
-        default: 'amd64'
+        default: 'arm64'
         type: choice
         options:
           - amd64
@@ -40,7 +40,7 @@ jobs:
       - name: 登录到 Docker 仓库
         id: login
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} ${{ github.event.inputs.TARGET_REGISTRY }}
-        continue-on-error: true
+        continue-on-error: false
 
       - name: 检查 Docker 登录成功
         if: ${{ steps.login.outcome == 'success' }}
